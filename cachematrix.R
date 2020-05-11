@@ -4,7 +4,7 @@ makeCacheMatrix <- function(x = matrix()) {
   
 ##NULL in R represents values undefined 
   m <- NULL
-##With this code we set the matrix
+##With this code we set the matrix and to clear the cache 
  set <- function(y) {
    x <<- y
    m <<- NULL
@@ -34,10 +34,10 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function( x, ...) {
 ##Return a matrix that is the inverse of "x"
   m <- x$getsolve()
-##Just return the inverse if its already set
+##Just return the inverse if its already set. La función return(m) no es necesaria, solo m
   if(!is.null(m)) {
     message ("getting cached data")
-    return(m)
+    m
   }
 ##Get the matrix from our object
   data <- x$get()
@@ -45,7 +45,7 @@ cacheSolve <- function( x, ...) {
   m <- solve(data, ...)
 ##Set the inverse to the object
   x$setsolve(m)
-##Retrun the matrix
+##Retrun the m, the inverse of the matrix that is calculated de nuevo
   m
 }
  
